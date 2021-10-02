@@ -10,4 +10,14 @@ player_stamina_drain_rate = .5;
 player_stamina_regen_rate = .4;
 player_is_recovering_stamina = false;
 
-ui_target = obj_camera
+key_type_star = "STAR";
+key_type_circle = "CIRCLE";
+key_type_square = "SQUARE";
+key_type_triangle = "TRIANGLE";
+
+player_star_count = 0;
+player_circle_count = 0;
+player_square_count = 0;
+player_triangle_count = 0;
+
+ui_target = obj_camera;
