@@ -20,4 +20,7 @@ player_circle_count = 0;
 player_square_count = 0;
 player_triangle_count = 0;
 
+max_room_time = room_speed * 120;
+current_timer = max_room_time;
+
 ui_target = obj_camera;

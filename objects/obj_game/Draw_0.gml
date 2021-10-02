@@ -32,25 +32,44 @@ if (instance_exists(ui_target)) {
 	draw_text_transformed(
 		camera_get_view_x(camera_get_active()) + 5,
 		camera_get_view_y(camera_get_active()) + 5,
-		"Stars: " + string(obj_game.player_star_count),
+		"Stars: " + string(player_star_count),
 		.5, .5, 0);
 		
 	draw_text_transformed(
 		camera_get_view_x(camera_get_active()) + 5,
 		camera_get_view_y(camera_get_active()) + 15,
-		"Circles: " + string(obj_game.player_circle_count),
+		"Circles: " + string(player_circle_count),
 		.5, .5, 0);
 		
 	draw_text_transformed(
 		camera_get_view_x(camera_get_active()) + 5,
 		camera_get_view_y(camera_get_active()) + 25,
-		"Squares: " + string(obj_game.player_square_count),
+		"Squares: " + string(player_square_count),
 		.5, .5, 0);
 		
 	draw_text_transformed(
 		camera_get_view_x(camera_get_active()) + 5,
 		camera_get_view_y(camera_get_active()) + 35,
-		"Triangles: " + string(obj_game.player_triangle_count),
+		"Triangles: " + string(player_triangle_count),
 		.5, .5, 0);
 	draw_set_alpha(1);
+	
+	// Timer
+	var minutes = floor(current_timer / room_speed / 60)
+	var seconds = floor(max((current_timer / room_speed - (minutes * 60)), 0))
+	
+	if (minutes < 10) {
+		minutes = "0" + string(minutes);
+	}
+	if (seconds < 10) {
+		seconds = "0" + string(seconds);
+	}
+	
+	// "Timer: " + string(round(current_timer / room_speed)
+	draw_text_transformed(
+		camera_get_view_x(camera_get_active()) + 5,
+		camera_get_view_y(camera_get_active()) + camera_get_view_height(camera_get_active()) - 15,
+		"Time left: " + string(minutes) + "m" + string(seconds) + "s",
+		.5, .5, 0)
+	
 }

@@ -7,9 +7,7 @@ if (attempt_unlock) {
 		obj_game.player_circle_count == required_circles &&
 		obj_game.player_square_count == required_squares &&
 		obj_game.player_triangle_count == required_triangles
-	) {
-		show_debug_message("You got everything needed!");
-		
+	) {		
 		// win condition, go next level
 	}
 	else {
