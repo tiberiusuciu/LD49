@@ -9,6 +9,7 @@ var up = keyboard_check(ord("W")) || keyboard_check(vk_up);
 var down = keyboard_check(ord("S")) || keyboard_check(vk_down);
 var is_running = keyboard_check(vk_shift);
 var spd = is_running ? r_spd : w_spd;
+spd = spd * spd_multiplier * spd_nerf;
 var is_opening_door = false;
 var interact = keyboard_check_pressed(ord("E"));
 
@@ -18,8 +19,69 @@ if (instance_exists(obj_game) && obj_game.player_is_recovering_stamina) {
 	is_running = false;
 }
 
-hspd += (right - left) * spd;
-vspd += (down - up) * spd;
+if (obj_game.is_sliding) {
+	
+	var tmp_right = keyboard_check_pressed(ord("D")) || keyboard_check_pressed(vk_right)
+	var tmp_left = keyboard_check_pressed(ord("A")) || keyboard_check_pressed(vk_left);
+	var tmp_up = keyboard_check_pressed(ord("W")) || keyboard_check_pressed(vk_up);
+	var tmp_down = keyboard_check_pressed(ord("S")) || keyboard_check_pressed(vk_down);
+	var tmp_hspd = tmp_right - tmp_left;
+	var tmp_vspd = tmp_down - tmp_up;
+	if (hspd != 0) {
+		hspd = min(hspd + random_range(.01, .25) * sign(tmp_hspd), 2);
+	}
+	else {
+		hspd += (right - left) * spd;
+	}
+	
+	if (vspd != 0) {
+		vspd = min(vspd + random_range(.01, .25) * sign(tmp_vspd), 2);
+	}
+	else {
+		vspd += (down - up) * spd;
+	}
+	
+}
+else {
+	hspd += (right - left) * spd;
+	vspd += (down - up) * spd;
+}
+
+if (obj_game.is_confused) {
+	if (!obj_game.is_sliding) {
+		hspd *= -1;
+		vspd *= -1;
+	}
+	else {
+		var tmp_right = keyboard_check_pressed(ord("D")) || keyboard_check_pressed(vk_right)
+		var tmp_left = keyboard_check_pressed(ord("A")) || keyboard_check_pressed(vk_left);
+		var tmp_up = keyboard_check_pressed(ord("W")) || keyboard_check_pressed(vk_up);
+		var tmp_down = keyboard_check_pressed(ord("S")) || keyboard_check_pressed(vk_down);
+		var tmp_hspd = tmp_right - tmp_left;
+		var tmp_vspd = tmp_down - tmp_up;
+		if (tmp_hspd != 0) {
+			hspd *= -1;
+		}
+		if (tmp_vspd != 0) {
+			vspd *= -1;
+		}
+	}
+}
+
+// Animations
+if (hspd != 0 || vspd != 0) {
+	image_speed = 2;
+	sprite_index = spr_player_move;
+	
+	if (is_running) {
+		image_speed = 4;
+	}
+}
+else {
+	sprite_index = spr_player_idle;
+	image_index = 0;
+	image_speed = 0;
+}
 
 
 // Horizontal collisions
@@ -50,8 +112,8 @@ if (place_meeting(x, y + vspd, obj_solid)) {
 
 // stamina management
 if (instance_exists(obj_game)) {
-	if ((hspd != 0 || vspd != 0) && is_running && !obj_game.player_is_recovering_stamina) {
-		obj_game.player_stamina = max(0, obj_game.player_stamina - obj_game.player_stamina_drain_rate);
+	if ((hspd != 0 || vspd != 0) && is_running && !obj_game.player_is_recovering_stamina && !obj_game.is_stamina_infinite) {
+		obj_game.player_stamina = max(0, obj_game.player_stamina - (obj_game.player_stamina_drain_rate * obj_game.stamina_cost_multiplier));
 	
 		if (obj_game.player_stamina <= 0) {
 			obj_game.player_is_recovering_stamina = true;
@@ -70,9 +132,12 @@ if (is_opening_door) {
 }
 
 x += hspd;
-y += vspd;
-hspd = 0;
-vspd = 0;
+y += vspd
+
+if (!obj_game.is_sliding) {
+	hspd = 0;
+	vspd = 0;
+}
 
 var nearby_door = collision_rectangle(x - 32, y - 48, x + 32, y + 16, obj_door, false, true);
 

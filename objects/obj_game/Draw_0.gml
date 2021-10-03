@@ -72,4 +72,167 @@ if (instance_exists(ui_target)) {
 		"Time left: " + string(minutes) + "m" + string(seconds) + "s",
 		.5, .5, 0)
 	
+	
+	// Effects
+	var offset = 0;
+	draw_set_halign(fa_right);
+	if (instance_exists(obj_slow_effect)) {
+		var seconds = floor(max((obj_slow_effect.duration / room_speed), 0))
+	
+		if (seconds < 10) {
+			seconds = "0" + string(seconds);
+		}
+		
+		draw_text_transformed(
+			camera_get_view_x(camera_get_active()) + camera_get_view_width(camera_get_active()) - 5,
+			camera_get_view_y(camera_get_active()) + camera_get_view_height(camera_get_active()) - 15 - offset,
+			"Slown down: " + string(seconds) + "s",
+			.5, .5, 0)
+		
+		offset += 10;
+	}
+	if (instance_exists(obj_fast_effect)) {
+		var seconds = floor(max((obj_fast_effect.duration / room_speed), 0))
+	
+		if (seconds < 10) {
+			seconds = "0" + string(seconds);
+		}
+		
+		draw_text_transformed(
+			camera_get_view_x(camera_get_active()) + camera_get_view_width(camera_get_active()) - 5,
+			camera_get_view_y(camera_get_active()) + camera_get_view_height(camera_get_active()) - 15 - offset,
+			"Speed up: " + string(seconds) + "s",
+			.5, .5, 0)
+		
+		offset += 10;
+	}
+	if (instance_exists(obj_heal_effect)) {
+		var seconds = floor(max((obj_heal_effect.duration / room_speed), 0))
+	
+		if (seconds < 10) {
+			seconds = "0" + string(seconds);
+		}
+		
+		draw_text_transformed(
+			camera_get_view_x(camera_get_active()) + camera_get_view_width(camera_get_active()) - 5,
+			camera_get_view_y(camera_get_active()) + camera_get_view_height(camera_get_active()) - 15 - offset,
+			"Healing up: " + string(seconds) + "s",
+			.5, .5, 0)
+		
+		offset += 10;
+	}
+	
+	if (instance_exists(obj_inf_stamina_effect)) {
+		var seconds = floor(max((obj_inf_stamina_effect.duration / room_speed), 0))
+	
+		if (seconds < 10) {
+			seconds = "0" + string(seconds);
+		}
+		
+		draw_text_transformed(
+			camera_get_view_x(camera_get_active()) + camera_get_view_width(camera_get_active()) - 5,
+			camera_get_view_y(camera_get_active()) + camera_get_view_height(camera_get_active()) - 15 - offset,
+			"Infinite Stamina: " + string(seconds) + "s",
+			.5, .5, 0)
+		
+		offset += 10;
+	}
+	
+	if (instance_exists(obj_stop_time_effect)) {
+		var seconds = floor(max((obj_stop_time_effect.duration / room_speed), 0))
+	
+		if (seconds < 10) {
+			seconds = "0" + string(seconds);
+		}
+		
+		draw_text_transformed(
+			camera_get_view_x(camera_get_active()) + camera_get_view_width(camera_get_active()) - 5,
+			camera_get_view_y(camera_get_active()) + camera_get_view_height(camera_get_active()) - 15 - offset,
+			"Time is stopped: " + string(seconds) + "s",
+			.5, .5, 0)
+		
+		offset += 10;
+	}
+	
+	if (instance_exists(obj_damage_over_time_effect)) {
+		var seconds = floor(max((obj_damage_over_time_effect.duration / room_speed), 0))
+	
+		if (seconds < 10) {
+			seconds = "0" + string(seconds);
+		}
+		
+		draw_text_transformed(
+			camera_get_view_x(camera_get_active()) + camera_get_view_width(camera_get_active()) - 5,
+			camera_get_view_y(camera_get_active()) + camera_get_view_height(camera_get_active()) - 15 - offset,
+			"Damage over time: " + string(seconds) + "s",
+			.5, .5, 0)
+		
+		offset += 10;
+	}
+	
+	if (instance_exists(obj_short_stamina_effect)) {
+		var seconds = floor(max((obj_short_stamina_effect.duration / room_speed), 0))
+	
+		if (seconds < 10) {
+			seconds = "0" + string(seconds);
+		}
+		
+		draw_text_transformed(
+			camera_get_view_x(camera_get_active()) + camera_get_view_width(camera_get_active()) - 5,
+			camera_get_view_y(camera_get_active()) + camera_get_view_height(camera_get_active()) - 15 - offset,
+			"Low Stamina: " + string(seconds) + "s",
+			.5, .5, 0)
+		
+		offset += 10;
+	}
+	
+	if (instance_exists(obj_confusion_effect)) {
+		var seconds = floor(max((obj_confusion_effect.duration / room_speed), 0))
+	
+		if (seconds < 10) {
+			seconds = "0" + string(seconds);
+		}
+		
+		draw_text_transformed(
+			camera_get_view_x(camera_get_active()) + camera_get_view_width(camera_get_active()) - 5,
+			camera_get_view_y(camera_get_active()) + camera_get_view_height(camera_get_active()) - 15 - offset,
+			"Confusion: " + string(seconds) + "s",
+			.5, .5, 0)
+		
+		offset += 10;
+	}
+	
+	if (instance_exists(obj_timer_drain_effect)) {
+		var seconds = floor(max((obj_timer_drain_effect.duration / room_speed), 0))
+	
+		if (seconds < 10) {
+			seconds = "0" + string(seconds);
+		}
+		
+		draw_text_transformed(
+			camera_get_view_x(camera_get_active()) + camera_get_view_width(camera_get_active()) - 5,
+			camera_get_view_y(camera_get_active()) + camera_get_view_height(camera_get_active()) - 15 - offset,
+			"Timer Drain: " + string(seconds) + "s",
+			.5, .5, 0)
+		
+		offset += 10;
+	}
+	
+	if (instance_exists(obj_slide_effect)) {
+		var seconds = floor(max((obj_slide_effect.duration / room_speed), 0))
+	
+		if (seconds < 10) {
+			seconds = "0" + string(seconds);
+		}
+		
+		draw_text_transformed(
+			camera_get_view_x(camera_get_active()) + camera_get_view_width(camera_get_active()) - 5,
+			camera_get_view_y(camera_get_active()) + camera_get_view_height(camera_get_active()) - 15 - offset,
+			"Slippery: " + string(seconds) + "s",
+			.5, .5, 0)
+		
+		offset += 10;
+	}
+	
+	draw_set_halign(fa_left);
 }
