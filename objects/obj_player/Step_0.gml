@@ -75,13 +75,13 @@ hspd = 0;
 vspd = 0;
 
 var nearby_door = collision_rectangle(x - 32, y - 48, x + 32, y + 16, obj_door, false, true);
-// collision_circle(x, y, 48, obj_door, false, true);
-// collision_rectangle(x - 32, y - 48, x + 32, y + 16, obj_door, false, true);
-
 
 // player actions
 if (interact) {
 	var nearby_dispenser = collision_circle(x, y, 48, obj_dispenser, false, true);
+	var nearby_health = collision_rectangle(x - 32, y - 48, x + 32, y + 16, obj_health, false, true);
+	// collision_circle(x, y, 48, obj_door, false, true);
+	// collision_rectangle(x - 32, y - 48, x + 32, y + 16, obj_door, false, true);
 	
 	// activating a dispenser
 	if (nearby_dispenser != noone) {
@@ -90,9 +90,16 @@ if (interact) {
 		}
 	}
 	
+	// interacting with nearby door
 	if (nearby_door != noone) {
 		obj_door.attempt_unlock = true;
 	}
+	
+	// interacting with nearby healing station
+	if (nearby_health != noone) {
+		obj_game.player_health = obj_game.player_max_health;
+	}
+	
 }
 
 // Getting door info

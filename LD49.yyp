@@ -7,6 +7,8 @@
     {"id":{"name":"obj_dispenser","path":"objects/obj_dispenser/obj_dispenser.yy",},"order":5,},
     {"id":{"name":"obj_solid","path":"objects/obj_solid/obj_solid.yy",},"order":1,},
     {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},"order":0,},
+    {"id":{"name":"obj_health","path":"objects/obj_health/obj_health.yy",},"order":6,},
+    {"id":{"name":"spr_health","path":"sprites/spr_health/spr_health.yy",},"order":5,},
     {"id":{"name":"obj_camera","path":"objects/obj_camera/obj_camera.yy",},"order":2,},
     {"id":{"name":"fnt_main","path":"fonts/fnt_main/fnt_main.yy",},"order":0,},
     {"id":{"name":"spr_floor","path":"sprites/spr_floor/spr_floor.yy",},"order":2,},

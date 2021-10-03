@@ -24,3 +24,7 @@ max_room_time = room_speed * 120;
 current_timer = max_room_time;
 
 ui_target = obj_camera;
+
+enum effects {
+	fast_effect
+}
