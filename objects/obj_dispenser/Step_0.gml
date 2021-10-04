@@ -1,6 +1,8 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+depth = -y;
+
 if (is_dispensing) {
 	if (type == obj_game.key_type_star) {
 		obj_game.player_star_count += 1;
@@ -15,12 +17,7 @@ if (is_dispensing) {
 		obj_game.player_triangle_count += 1;
 	}
 	
-	
-	
 	// give effect
-	generate_effect();
-	generate_effect();
-	generate_effect();
 	generate_effect();
 	generate_effect();
 	

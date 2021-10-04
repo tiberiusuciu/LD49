@@ -4,5 +4,5 @@
 // Inherit the parent event
 event_inherited();
 
-obj_game.health_loss = .1;
+obj_game.health_loss = min(.1 + (obj_game.level * .01), .5);
 

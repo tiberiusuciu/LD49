@@ -37,17 +37,19 @@ ui_target = obj_camera;
 
 is_confused = false;
 
-number_of_effects = 10;
+player_score = 0;
+
+level = 1;
+
+number_of_effects = 8;
 enum effects {
 	fast_effect,
 	slow_effect,
 	healing_over_time,
 	infinite_stamina,
-	stop_time,
 	damage_over_time,
 	short_stamina,
 	confusion,
-	drain_time,
-	slide_effect
+	drain_time
 }
 

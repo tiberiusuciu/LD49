@@ -3,4 +3,4 @@
 
 is_dispensing = false;
 
-type = obj_game.key_type_star;
+type = noone;

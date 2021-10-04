@@ -7,5 +7,12 @@ w_spd = 2;
 r_spd = 5;
 spd_multiplier = 1;
 spd_nerf = 1;
+looking_direction = 1;
+enum directions {
+	left,
+	down,
+	right,
+	up
+}
 
 image_speed = 0;

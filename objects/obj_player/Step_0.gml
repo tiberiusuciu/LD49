@@ -27,14 +27,14 @@ if (obj_game.is_sliding) {
 	var tmp_down = keyboard_check_pressed(ord("S")) || keyboard_check_pressed(vk_down);
 	var tmp_hspd = tmp_right - tmp_left;
 	var tmp_vspd = tmp_down - tmp_up;
-	if (hspd != 0) {
+	if (hspd != 0 && tmp_hspd != 0) {
 		hspd = min(hspd + random_range(.01, .25) * sign(tmp_hspd), 2);
 	}
 	else {
 		hspd += (right - left) * spd;
 	}
 	
-	if (vspd != 0) {
+	if (vspd != 0 && tmp_vspd != 0) {
 		vspd = min(vspd + random_range(.01, .25) * sign(tmp_vspd), 2);
 	}
 	else {
@@ -70,15 +70,31 @@ if (obj_game.is_confused) {
 
 // Animations
 if (hspd != 0 || vspd != 0) {
+	if (vspd < 0) {
+		looking_direction = directions.up;
+		sprite_index = spr_player_move_backwards_new;
+	}
+	else if (vspd > 0) {
+		looking_direction = directions.down;
+		sprite_index = spr_player_move;
+	}
+	
 	image_speed = 2;
-	sprite_index = spr_player_move;
 	
 	if (is_running) {
 		image_speed = 4;
 	}
 }
 else {
-	sprite_index = spr_player_idle;
+	
+	if (looking_direction == directions.up) {
+		sprite_index = spr_player_move_backwards_new;
+	}
+	else if (looking_direction == directions.down) {
+		sprite_index = spr_player_idle;
+	}
+	
+	image_index = 0;
 	image_index = 0;
 	image_speed = 0;
 }
@@ -127,10 +143,6 @@ if (instance_exists(obj_game)) {
 	}
 }
 
-if (is_opening_door) {
-	show_debug_message("OK!");
-}
-
 x += hspd;
 y += vspd
 
@@ -163,6 +175,9 @@ if (interact) {
 	// interacting with nearby healing station
 	if (nearby_health != noone) {
 		obj_game.player_health = obj_game.player_max_health;
+		with (obj_effect) {
+			instance_destroy(self);
+		}
 	}
 	
 }
