@@ -19,7 +19,8 @@ if (is_dispensing) {
 	
 	// give effect
 	generate_effect();
-	generate_effect();
+	audio_sound_pitch(snd_dispense, random_range(.9, 1.1));
+	audio_play_sound(snd_dispense, 5, false);
 	
 	is_dispensing = false;
 }

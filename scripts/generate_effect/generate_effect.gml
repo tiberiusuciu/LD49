@@ -29,6 +29,7 @@ function generate_effect(){
 				instance_create_layer(0, 0, "instances", obj_heal_effect);
 			}
 		break;
+		/*
 		case obj_game.effects.infinite_stamina:
 			if (instance_exists(obj_inf_stamina_effect)) {
 				obj_inf_stamina_effect.duration = obj_effect.initial_duration;
@@ -37,6 +38,7 @@ function generate_effect(){
 				instance_create_layer(0, 0, "instances", obj_inf_stamina_effect);
 			}
 		break;
+		*/
 		/*
 		case obj_game.effects.stop_time:
 			if (instance_exists(obj_stop_time_effect)) {

@@ -30,6 +30,12 @@ if (attempt_unlock) {
 		}
 		
 		obj_game.current_timer += room_speed * 10;
+		audio_sound_pitch(snd_next_level, random_range(.9, 1.1));
+		audio_play_sound(snd_next_level, 5, false);
+	}
+	else {
+		audio_sound_pitch(snd_rejected, random_range(.9, 1.1));
+		audio_play_sound(snd_rejected, 5, false);
 	}
 	obj_game.player_star_count = 0;
 	obj_game.player_circle_count = 0;

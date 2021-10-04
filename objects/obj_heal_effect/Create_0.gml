@@ -4,4 +4,4 @@
 // Inherit the parent event
 event_inherited();
 
-obj_game.health_regen = .25;
+obj_game.health_regen = .15;

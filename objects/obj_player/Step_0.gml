@@ -73,10 +73,23 @@ if (hspd != 0 || vspd != 0) {
 	if (vspd < 0) {
 		looking_direction = directions.up;
 		sprite_index = spr_player_move_backwards_new;
+		image_xscale = 1;
 	}
 	else if (vspd > 0) {
 		looking_direction = directions.down;
 		sprite_index = spr_player_move;
+		image_xscale = 1;
+	}
+	
+	if (hspd < 0) {
+		looking_direction = directions.left;
+		sprite_index = spr_player_move_side;
+		image_xscale = -1;
+	}
+	else if (hspd > 0) {
+		looking_direction = directions.right;
+		sprite_index = spr_player_move_side;
+		image_xscale = 1;
 	}
 	
 	image_speed = 2;
@@ -174,10 +187,13 @@ if (interact) {
 	
 	// interacting with nearby healing station
 	if (nearby_health != noone) {
-		obj_game.player_health = obj_game.player_max_health;
+		// obj_game.player_health = obj_game.player_max_health;
 		with (obj_effect) {
 			instance_destroy(self);
 		}
+		instance_create_layer(0, 0, "instances", obj_heal_effect);
+		audio_sound_pitch(snd_stabilize, random_range(.9, 1.1));
+		audio_play_sound(snd_stabilize, 5, false);
 	}
 	
 }

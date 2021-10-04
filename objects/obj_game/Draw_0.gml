@@ -27,7 +27,7 @@ if (room == Room0) {
 	
 	var text01 = "The theme is:";
 	var text02 = "Unstable";
-	var text03 = "Keep feeding the machine the exact\nformula to avoid death!\n\nBeware that the compounds are unstable\nand might give you some side effects.\nGet the right amount of each compound\nand stay alive!";
+	var text03 = "Keep feeding the machine the exact\nformula to avoid death!\n\nBeware that the compounds are unstable\nand might give you some side effects.\nGet the right amount of each compound\nto feed the machine 15 times and win!";
 	var text04 = "Press any key to start";
 
 	draw_text_transformed(20, 260, text01, 1.5, 1.5, 0);
@@ -70,29 +70,47 @@ else if (room == Room1) {
 		
 		// Compound score
 		draw_set_halign(fa_left);
-		draw_text_transformed(
-			camera_get_view_x(camera_get_active()) + 5,
-			camera_get_view_y(camera_get_active()) + 5,
-			"Stars: " + string(player_star_count),
-			.5, .5, 0);
+		var compound_offset = 0;
+		if (player_star_count > 0) {
+			draw_text_transformed(
+				camera_get_view_x(camera_get_active()) + 5,
+				camera_get_view_y(camera_get_active()) + 5,
+				"Stars: " + string(player_star_count),
+				.5, .5, 0);
+				
+			compound_offset += 10;
+		}
 		
-		draw_text_transformed(
-			camera_get_view_x(camera_get_active()) + 5,
-			camera_get_view_y(camera_get_active()) + 15,
-			"Circles: " + string(player_circle_count),
-			.5, .5, 0);
+		if (player_circle_count > 0) {
+			draw_text_transformed(
+				camera_get_view_x(camera_get_active()) + 5,
+				camera_get_view_y(camera_get_active()) + 5 + compound_offset,
+				"Circles: " + string(player_circle_count),
+				.5, .5, 0);
+				
+			compound_offset += 10;
+		}
 		
-		draw_text_transformed(
-			camera_get_view_x(camera_get_active()) + 5,
-			camera_get_view_y(camera_get_active()) + 25,
-			"Squares: " + string(player_square_count),
-			.5, .5, 0);
+		if (player_square_count > 0) {
+			draw_text_transformed(
+				camera_get_view_x(camera_get_active()) + 5,
+				camera_get_view_y(camera_get_active()) + 5 + compound_offset,
+				"Squares: " + string(player_square_count),
+				.5, .5, 0);
+				
+			compound_offset += 10;
+		}
 		
-		draw_text_transformed(
-			camera_get_view_x(camera_get_active()) + 5,
-			camera_get_view_y(camera_get_active()) + 35,
-			"Triangles: " + string(player_triangle_count),
-			.5, .5, 0);
+		if (player_triangle_count > 0) {
+			draw_text_transformed(
+				camera_get_view_x(camera_get_active()) + 5,
+				camera_get_view_y(camera_get_active()) + 5 + compound_offset,
+				"Triangles: " + string(player_triangle_count),
+				.5, .5, 0);
+				
+			compound_offset += 10;
+		}
+
 		draw_set_alpha(1);
 	
 		// Timer
@@ -290,15 +308,20 @@ else if (room == Room2) {
 	
 	draw_text_transformed(20, 20, "Game Over", 1, 1, 0);
 	
+	draw_set_color(c_white);
+	
+	draw_text_transformed(20, 60, "At level " + string(obj_game.level) + ",", 1, 1, 0);
+	draw_text_transformed(20, 80, obj_game.cause_of_death, 1, 1, 0);
+	
 	draw_set_color(c_yellow);
-	draw_text_transformed(20, 70, "SCORE (" + string(player_score) + ")", 1, 1, 0);
+	draw_text_transformed(20, 120, "SCORE (" + string(player_score) + ")", 1, 1, 0);
 	
 	draw_set_color(c_white);
 	
-	draw_text_transformed(20, 120, "Thank you for playing our\nLudum Dare 49 entry", 1, 1, 0);
-	draw_text_transformed(20, 210, "Made by\ntiberiusuciu and dkz1989", 1, 1, 0);
+	draw_text_transformed(20, 160, "Thank you for playing our\nLudum Dare 49 entry", 1, 1, 0);
+	draw_text_transformed(20, 240, "Made by\ntiberiusuciu and dkz1989", 1, 1, 0);
 
-	draw_text_transformed(20, 300, "Special thanks to\nEmma and Cam for the help\nwith arts and sounds!", 1, 1, 0);
+	draw_text_transformed(20, 350, "Special thanks to\nEmma and Cam for their contributions!", 1, 1, 0);
 
 	draw_text_transformed(20, 690, "Press <escape> to quit\nor press <r> to restart", 1, 1, 0);
 }

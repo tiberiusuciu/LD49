@@ -41,12 +41,13 @@ player_score = 0;
 
 level = 1;
 
-number_of_effects = 8;
+cause_of_death = ""
+
+number_of_effects = 7;
 enum effects {
 	fast_effect,
 	slow_effect,
 	healing_over_time,
-	infinite_stamina,
 	damage_over_time,
 	short_stamina,
 	confusion,
